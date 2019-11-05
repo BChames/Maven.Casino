@@ -13,6 +13,7 @@ public class Card {
 
     public Suit getSuit()
     {
+
         return suit;
     }
     //Important getter
@@ -23,11 +24,13 @@ public class Card {
     //Important getter
     public CardValue getCardValue()
     {
+
         return cardValue;
     }
 
     public void setCardValue(CardValue cardValue)
     {
+
         this.cardValue = cardValue;
     }
 
@@ -50,10 +53,12 @@ public class Card {
 
         private CardValue (int value)
         {
+
             this.cardValue = value;
         }
 
         public int getCardValue() {
+
             return cardValue;
         }
     }
