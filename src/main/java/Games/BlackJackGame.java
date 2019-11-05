@@ -28,12 +28,12 @@ public class BlackJackGame extends CardGame implements Game, GamblingGame {
         this.minimumBet = minimumBet;
     }
 
-    public Boolean playerTurn(Player BlackJackPlayer) {
+    public Boolean playerTurn(player BlackJackPlayer) {
 
         return null;
     }
 
-    public Boolean dealerTurn(Dealer BlackJackDealer) {
+    public Boolean dealerTurn(APIPlayer BlackJackDealer) {
 
         return null;
     }
