@@ -1,7 +1,7 @@
 package io.zipcoder.casino;
 
 
-import io.zipcoder.casino.utilities.MainMenu;
+import io.zipcoder.casino.MainApplication.MainMenu;
 
 public class Casino {
     public static void main(String[] args) {
