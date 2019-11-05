@@ -14,10 +14,10 @@ public class BackAlleyDiceGame {
 
     public void startBackAlley() {
         String s = Console.getStringInput("Welcome to BackAlley Dice! \n Press enter to start");
-        baFirstRoll();
+        backAlleyRoll();
     }
 
-    public void baFirstRoll() {
+    public void backAlleyRoll() {
 
         Dice dice = new Dice();
         diceHand.add(dice.diceToss());
@@ -29,11 +29,15 @@ public class BackAlleyDiceGame {
             checkForAutoLose();
         }
         if(checkForAutoLose() == false){
-            frequencyCheck();
+            checkDoublesWinLose();
+        }
+        if (checkDoublesWinLose() == null){
+
         }
     }
 
-    public String frequencyCheck() {
+
+    public String checkDoublesWinLose() {
         for (int i = 1; i < 7; i ++ ){
             if (Collections.frequency(diceHand, new Integer(i)) == 2) {
                 if (Collections.frequency(diceHand, new Integer(1)) == 1) {
@@ -42,15 +46,12 @@ public class BackAlleyDiceGame {
                 }
             }
                 else if  (Collections.frequency(diceHand,new Integer(6))==1){
+
                     isWinner = true;
                     return "You rolled an automatic win ! Congrats!";
                 }
             } return null;
         }
-
-
-
-
 
 
     public boolean checkForAutoWin() {
@@ -61,7 +62,8 @@ public class BackAlleyDiceGame {
         } else if (diceHand.contains(4) && diceHand.contains(5) && diceHand.contains(6)) {
             System.out.println("You rolled an automatic win ! Congrats!");
             return true;
-        }else return false;
+        }
+        else return false;
 
     }
 
@@ -69,17 +71,8 @@ public class BackAlleyDiceGame {
         if (diceHand.contains(1) && diceHand.contains(2) && diceHand.contains(3)) {
             System.out.println("You rolled an automatic loss :( Sorry...");
             return true;
-//        } else if (diceHand.get(0) == diceHand.get(1) && diceHand.contains(1)) {
-//            System.out.println("You rolled an automatic loss :( Sorry...");
-//            return true;
-//        } else if (diceHand.get(0) == diceHand.get(2) && diceHand.contains(1)) {
-//            System.out.println("You rolled an automatic loss :( Sorry...");
-//            return true;
-//        } else if (diceHand.get(1) == diceHand.get(2) && diceHand.contains(1)) {
-//            System.out.println("You rolled an automatic loss :( Sorry...");
-//            return true;
-        }else return false;
-
+        }
+        else return false;
     }
 
 }
