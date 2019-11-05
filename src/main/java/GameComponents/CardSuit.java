@@ -1,4 +1,8 @@
 package GameComponents;
 
-public class CardSuit {
+public enum CardSuit {
+    HEARTS,
+    SPADES,
+    CLUBS,
+    DIAMONDS,
 }
