@@ -3,7 +3,7 @@ import GameComponents.Card;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeckOfCards DeckOf {
+public class DeckOfCards {
     private List<Card> deck;
 
     public DeckOfCards() {
