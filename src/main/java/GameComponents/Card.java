@@ -44,7 +44,7 @@ public class Card {
         JACK(10),
         QUEEN(10),
         KING(10),
-        ACE(10);// give two values
+        ACE(11);// give two values 11 or 1
 
         private int cardValue;
 

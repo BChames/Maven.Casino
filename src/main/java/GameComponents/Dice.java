@@ -1,5 +1,6 @@
 package GameComponents;
 
+<<<<<<< HEAD
 public class Dice {
 
     int numOfDice = 0;
@@ -25,6 +26,10 @@ public class Dice {
         return diceResult;
 
     //returns the sum of the dice you roll
+=======
+public class Dice extends gamecomponents {
+    public Dice() {
+>>>>>>> d21861debec359643ae77d913b55ba7d30f4b6dd
 
     }
 }
