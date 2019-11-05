@@ -1,5 +1,8 @@
 package io.zipcoder.casino.MainApplication;
 
+import Games.BackAlleyDiceGame;
+import Games.DiceGame;
+
 public class MainMenu {
 
     public void getMainMenu() {
@@ -27,6 +30,8 @@ public class MainMenu {
             case 3:
                 break;
             case 4:
+                BackAlleyDiceGame backalley = new BackAlleyDiceGame();
+                backalley.startBackAlley();
                 break;
             default:
                 Console.println("\nInvalid selection. Please try again.");
