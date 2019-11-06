@@ -1,5 +1,7 @@
 package Games;
 
+import GameComponents.Dice;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,5 +12,30 @@ public class BackAlleyDiceGameTest {
     public void startBackAlleyTest() {
         BackAlleyDiceGame gameTest = new BackAlleyDiceGame();
         gameTest.startBackAlley();
+    }
+
+    @Test
+    public void frequencyTest() {
+        Dice dice = new Dice();
+        BackAlleyDiceGame feqTest = new BackAlleyDiceGame();
+        feqTest.diceHand.add(5);
+        feqTest.diceHand.add(1);
+        feqTest.diceHand.add(5);
+        String actual = feqTest.checkDoublesWinLose();
+        String expected = "You rolled an automatic loss :( Sorry...";
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void doublesWinTest() {
+        Dice dice = new Dice();
+        BackAlleyDiceGame feqTest = new BackAlleyDiceGame();
+        feqTest.diceHand.add(6);
+        feqTest.diceHand.add(1);
+        feqTest.diceHand.add(1);
+        String actual = feqTest.checkDoublesWinLose();
+        String expected = "You rolled an automatic win ! Congrats!";
+        Assert.assertEquals(expected, actual);
     }
 }
