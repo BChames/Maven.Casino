@@ -17,7 +17,7 @@ Player casinoPlayer = new Player();
                              "\n" +
                         "DICE GAMES! \n" +
                             "3. Craps\n" +
-                            "4. Street Alley Dice\n");
+                            "4. BackAlley Dice\n");
 
         mainMenuActions(input);
     }
@@ -34,7 +34,7 @@ Player casinoPlayer = new Player();
                 craps.startCraps();
                 break;
             case 4:
-                BackAlleyDiceGame backalley = new BackAlleyDiceGame();
+                BackAlleyDiceGame backalley = new BackAlleyDiceGame(casinoPlayer);
                 backalley.startBackAlley();
                 break;
             default:

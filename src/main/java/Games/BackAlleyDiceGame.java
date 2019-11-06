@@ -5,8 +5,6 @@ import Interfaces.GamblingGame;
 import Interfaces.GamblingPlayer;
 import io.zipcoder.casino.MainApplication.Console;
 import player.Player;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -18,25 +16,9 @@ import java.util.Collections;
         private Integer computerPoints = 0;
         private Double playerBet = 0.0;
 
-//        public BackAlleyDiceGame(Player casinoPlayer) {
-//            this.baPlayer = casinoPlayer;
-           // backAlleyDisplayMenu();
-//        }
-//        public void backAlleyDisplayMenu(){
-//            switchMenu(Console.getIntegerInput("welcome to this game\n" +
-//                    "1 - start game\n" +
-//                    "2 - leave table;"));
-//        }
-//        public void switchMenu(Integer choice){
-//            switch(choice){
-//                case 1 :
-//                    break;
-//                case 2:
-//                    break;
-//                default:
-//                    Console.println("wrong choice bitch");
-//            }
-//        }
+        public BackAlleyDiceGame(Player casinoPlayer) {
+            this.baPlayer = casinoPlayer;
+        }
 
         public void startBackAlley() {
             try{
@@ -152,9 +134,9 @@ import java.util.Collections;
             return points;
         }
 
+
         public String isWinner() {
             return "CONGRATS YOU WON ! WOO \n You won :" + "Your bet + half :t   " + playerBet + " + " + playerBet * .5 + "\nDon't spend it all in once place :)";
-
 
         }
 
