@@ -1,14 +1,14 @@
 package Games;
 
-import GameComponents.DeckOfCards;
+import GameComponents.Deck;
 import player.Player;
 
 abstract class CardGame {
-    DeckOfCards deckOfCards;
+    Deck deckOfCards;
     Player player;
 
     public CardGame() {
-        public CardGame(DeckOfCards deckOfCards, APIPlayer apiPlayer, player Player) {
+        public CardGame(Deck deckOfCards, APIPlayer apiPlayer, player Player) {
             this.deckOfCards = deckOfCards;
             this.apiPlayer = apiPlayer;
             this.player = player;
