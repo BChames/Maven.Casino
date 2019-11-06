@@ -40,8 +40,35 @@ public class Hand {
 
         int randomIdx = random.nextInt(cardsInHand.size());
         return cardsInHand.get(randomIdx);
+    }
 
+    public boolean manageDuplicateCards() {
+        boolean foundMatch = false;
+        int i = 0;
+        while(i < cardsInHand.size()) {
+            foundMatch = false;
+            Card cardTobeMatched = cardsInHand.get(i);
+            for (int j = i + 1; j < cardsInHand.size(); j++) {
+                foundMatch = removeMatchingCards(cardTobeMatched, cardsInHand.get(j));
+                if (foundMatch) {
+                    break;
+                }
+            }
+            if(!foundMatch) {
+                i++;
+            }
+        }
+        return foundMatch;
+    }
 
+    private boolean removeMatchingCards(Card card1, Card card2) {
+        boolean matchfound = false;
+        if (card1.equals(card2)) {
+            cardsInHand.remove(card1);
+            cardsInHand.remove(card2);
+            matchfound = true;
+        }
+        return matchfound;
     }
 
     public void removeCardFromHand(Card card) {
@@ -59,4 +86,6 @@ public class Hand {
     public static void main(String[] args) {
         // write your code here
     }
+
+
 }
