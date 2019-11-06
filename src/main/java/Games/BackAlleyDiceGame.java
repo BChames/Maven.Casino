@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class BackAlleyDiceGame {
-    ArrayList<Integer> diceHand = new ArrayList<>();
+    ArrayList<Integer> diceHand = new ArrayList<Integer>();
 
     Dice dice = new Dice(3);
     Boolean isWinner = null;

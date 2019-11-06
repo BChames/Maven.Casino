@@ -9,7 +9,7 @@ public class DiceTest {
 
     @Test
     public void diceTossTest(){
-        ArrayList<Integer> diceHand = new ArrayList<>();
+        ArrayList<Integer> diceHand = new ArrayList<Integer>();
         Dice dice = new Dice(1);
         diceHand.add( dice.diceToss());
         diceHand.add( dice.diceToss());
