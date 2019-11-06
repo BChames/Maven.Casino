@@ -8,7 +8,7 @@ import player.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 
-    public class BackAlleyDiceGame implements GamblingGame, GamblingPlayer {
+    public class BackAlleyDiceGame {
         Player baPlayer;
         ArrayList<Integer> diceHand = new ArrayList<>();
         private Dice dice = new Dice(3);
@@ -195,21 +195,6 @@ import java.util.Collections;
                 diceHand.clear();
                 backComputerRoll();
             }
-        }
-
-        @Override
-        public Double addToBet() {
-            return null;
-        }
-
-        @Override
-        public Double payOut() {
-            return null;
-        }
-
-        @Override
-        public Double placeBet() {
-            return null;
         }
     }
 
