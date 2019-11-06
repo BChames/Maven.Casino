@@ -1,12 +1,14 @@
 package Games;
 
 import GameComponents.Dice;
+import Interfaces.GamblingGame;
+import Interfaces.GamblingPlayer;
 import io.zipcoder.casino.MainApplication.Console;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class BackAlleyDiceGame {
+public class BackAlleyDiceGame implements GamblingGame , GamblingPlayer {
     ArrayList<Integer> diceHand = new ArrayList<>();
 
     Dice dice = new Dice(3);
@@ -179,5 +181,19 @@ public class BackAlleyDiceGame {
         }
     }
 
+    @Override
+    public Double addToBet() {
+        return null;
+    }
+
+    @Override
+    public Double payOut() {
+        return null;
+    }
+
+    @Override
+    public Double placeBet() {
+        return null;
+    }
 }
 
