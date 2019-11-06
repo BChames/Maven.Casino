@@ -8,9 +8,13 @@ import java.util.Collections;
 
 public class BackAlleyDiceGame {
     ArrayList<Integer> diceHand = new ArrayList<>();
-    Dice dice = new Dice();
+//<<<<<<< HEAD
+    //Dice dice = new Dice();
     Boolean isWinner= null;
 
+//=======
+    Dice dice = new Dice(1);
+//>>>>>>> Craps
 
     public void startBackAlley() {
         String s = Console.getStringInput("Welcome to BackAlley Dice! \n Press enter to start");
@@ -19,7 +23,7 @@ public class BackAlleyDiceGame {
 
     public void baFirstRoll() {
 
-        Dice dice = new Dice();
+        Dice dice = new Dice(1);
         diceHand.add(dice.diceToss());
         diceHand.add(dice.diceToss());
         diceHand.add(dice.diceToss());
