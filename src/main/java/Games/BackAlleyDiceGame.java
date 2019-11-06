@@ -8,7 +8,8 @@ import java.util.Collections;
 
 public class BackAlleyDiceGame {
     ArrayList<Integer> diceHand = new ArrayList<>();
-    Dice dice = new Dice();
+
+    Dice dice = new Dice(3);
     Boolean isWinner = null;
     Integer playerPoints = 0;
     Integer computerPoints = 0;
@@ -19,31 +20,10 @@ public class BackAlleyDiceGame {
         backAlleyRoll();
     }
 
+
     public void backAlleyRoll() {
 
-//        Dice dice = new Dice();
-//        diceHand.add(dice.diceToss());
-//        diceHand.add(dice.diceToss());
-//        diceHand.add(dice.diceToss());
-//        System.out.println(diceHand);
-//        System.out.println("Checking Auto Win");
-//        if (!checkForAutoWin()) {
-//            System.out.println("Checking Auto Loss");
-//            if(!checkForAutoLose()) {
-//                System.out.println("Checking Doubles");
-//                System.out.println(checkDoublesWinLose());
-//
-//                if(checkDoublesPoints() == null) {
-//                    checkDoublesPoints();
-//                    playerPoints = checkDoublesPoints();
-//                    System.out.println(playerPoints);
-//                } else {
-//                    diceHand = new ArrayList<>();
-//                    backAlleyRoll();
-//                }
-//            }
-//        }
-        Dice dice = new Dice();
+
         diceHand.add(dice.diceToss());
         diceHand.add(dice.diceToss());
         diceHand.add(dice.diceToss());
