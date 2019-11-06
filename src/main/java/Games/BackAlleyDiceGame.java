@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
     public class BackAlleyDiceGame implements GamblingGame, GamblingPlayer {
-        ArrayList<Integer> diceHand = new ArrayList<>();
+        ArrayList<Integer> diceHand = new ArrayList<Integer>();
         private Dice dice = new Dice(3);
         private Integer playerPoints = 0;
         private Integer computerPoints = 0;
