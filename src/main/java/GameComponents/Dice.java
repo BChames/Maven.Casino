@@ -8,6 +8,10 @@ public class Dice {
     public Dice(Integer numOfDice) {
         this.numOfDice = numOfDice;
     }
+
+    public Dice() {
+
+    }
     // constructor for dice
 
     public int diceToss() {
