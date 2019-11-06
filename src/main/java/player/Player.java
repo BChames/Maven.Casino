@@ -3,7 +3,7 @@ package player;
 public class Player {
 
     private String userName;
-    private Double wallet;
+    private Double wallet = 300.0;
 
     public Player(String userName, Double wallet){
         this.userName = userName;
