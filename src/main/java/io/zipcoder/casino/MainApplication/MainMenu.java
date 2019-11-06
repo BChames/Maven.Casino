@@ -22,8 +22,7 @@ public class MainMenu {
 
     public void getMainMenu() {
         Integer input = Console.getIntegerInput(
-                "\nWelcome to the Casino! " +
-                        "\nWhere you don't need money, because all you got is time to spend\n\n" +
+                "What game would you like to play\n" +
                         "CARD GAMES\n" +
                             "1. Go Fish\n" +
                             "2. Blackjack\n" +
