@@ -40,7 +40,5 @@ Player casinoPlayer = new Player();
             default:
                 Console.println("\nInvalid selection. Please try again.");
         }
-
-
     }
 }

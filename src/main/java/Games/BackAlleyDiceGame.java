@@ -21,14 +21,13 @@ import java.util.Collections;
         }
 
         public void startBackAlley() {
-            try{
-                playerBet = Console.getDoubleInput("Welcome to BackAlley Dice!\nPlease place your bet : ");}
-
-            catch (Exception exception){
-                Console.getStringInput("Try putting a number this time... Thank you");
-                startBackAlley();
-            }
-            backPlayerRoll();
+                playerBet = Console.getDoubleInput("Welcome to BackAlley Dice!\n You currently have: "+ baPlayer.getWallet() +"\nPlease place your bet : ");
+                if(playerBet > baPlayer.getWallet()){
+                    Console.println("HAHA... no you don't have that much try again :)\n\n");
+                    startBackAlley();
+                }
+                baPlayer.setWallet(baPlayer.getWallet() - playerBet);
+                backPlayerRoll();
         }
 
 
@@ -136,12 +135,16 @@ import java.util.Collections;
 
 
         public String isWinner() {
-            return "CONGRATS YOU WON ! WOO \n You won :" + "Your bet + half :t   " + playerBet + " + " + playerBet * .5 + "\nDon't spend it all in once place :)";
+            baPlayer.setWallet(baPlayer.getWallet() + playerBet*1.5);
+            return "CONGRATS YOU WON ! WOO \n You won :" + "Your bet + half :  " + playerBet * 1.5 +
+                    "\nYour wallet now has: $" + baPlayer.getWallet() +
+                    "\nDon't spend it all in once place :)";
 
         }
 
         public String isLoser() {
-            return "You lose.. awkward..." + "\nYour bet of $" + playerBet + " is ours now.....";
+            return "You lose.. awkward..." + "\nYour bet of $" + playerBet + " is ours now....." +
+                    "\nYour wallet now has: $" + baPlayer.getWallet();
         }
 
         public void backComputerRoll() {
