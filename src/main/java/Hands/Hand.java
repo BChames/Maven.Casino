@@ -31,15 +31,17 @@ public class Hand {
         cardsInHand.add(card);
     }
 
-
     public int getNumberOfCardsInHand() {
         return cardsInHand.size();
     }
 
     public Card getRandomCard() {
         Random random = new Random();
+
         int randomIdx = random.nextInt(cardsInHand.size());
         return cardsInHand.get(randomIdx);
+
+
     }
 
     public void removeCardFromHand(Card card) {

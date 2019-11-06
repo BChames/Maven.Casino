@@ -1,6 +1,7 @@
 package io.zipcoder.casino;
 
 
+import GameComponents.Deck;
 import io.zipcoder.casino.MainApplication.MainMenu;
 
 public class Casino {
