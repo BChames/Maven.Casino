@@ -19,6 +19,7 @@ public class Card {
     //Important getter
     public void setSuit(Suit suit)
     {
+
         this.suit = suit;
     }
     //Important getter
@@ -47,7 +48,7 @@ public class Card {
         JACK(10),
         QUEEN(10),
         KING(10),
-        ACE(11);// give two values 11 or 1
+        ACE(11);// give two values
 
         private int cardValue;
 

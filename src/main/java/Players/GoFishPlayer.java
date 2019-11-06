@@ -1,4 +1,4 @@
-package player;
+package Players;
 
 public class GoFishPlayer {
 }

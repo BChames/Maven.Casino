@@ -49,12 +49,14 @@ public class Deck {
  */
     }
 
-    public void drawCard(){
+    public Card drawCard(){
         Collections.shuffle(deck);
         Iterator<Card> cardIterator = deck.iterator();
 
         Card aCard = cardIterator.next();
         System.out.println(aCard.getCardValue() + " of " + aCard.getSuit());
+
+        return aCard;
 
     }
 

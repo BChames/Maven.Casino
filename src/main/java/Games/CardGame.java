@@ -1,7 +1,7 @@
 package Games;
 
 import GameComponents.Deck;
-import player.Player;
+import Players.Player;
 
 abstract class CardGame {
     Deck deckOfCards;
@@ -17,13 +17,29 @@ abstract class CardGame {
 
         }
         public Boolean determineWin() {
-            return null;
+                String result = "";
+                if((player.getHandValue() < dealer.getHandValue()) &&
+                        dealer.getHandValue() <= 21 )
+                    result = "Lose";
+                else if ((player.getHandValue() == dealer.getHandValue()) &&
+                        dealer.getHandValue() <= 21 )
+                    result = "Push";
+                else
+                    result = "Win";
+
+                return result;
+            }
 
         }
         public void gameOver() {
-
+            System.out.println("Sorry, you lose!");
+            cash = cash - bet;
+            System.out.println("Cash: " + cash);
         }
         public void getMenu () {
+        }
+
+
         }
 
     }
