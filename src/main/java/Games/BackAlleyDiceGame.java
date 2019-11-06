@@ -44,7 +44,7 @@ public class BackAlleyDiceGame {
             Console.getStringInput(isWinner());
         }
         checkDoublesLose();
-        if (checkForAutoLose()){
+        if (checkDoublesLose()){
            Console.getStringInput(isLoser());
         }
 
@@ -86,7 +86,6 @@ public class BackAlleyDiceGame {
                     return true;
                 }
             }
-
         }
         return false;
     }
@@ -98,7 +97,6 @@ public class BackAlleyDiceGame {
                 if (Collections.frequency(diceHand, 1) == 1) {
                     return true;
                 }
-
             }
         }return false;
     }
@@ -138,9 +136,12 @@ public class BackAlleyDiceGame {
     public void backComputerRoll() {
         diceHand.clear();
 
-        diceHand.add(dice.diceToss());
-        diceHand.add(dice.diceToss());
-        diceHand.add(dice.diceToss());
+//        diceHand.add(dice.diceToss());
+//        diceHand.add(dice.diceToss());
+//        diceHand.add(dice.diceToss());
+        diceHand.add(5);
+        diceHand.add(5);
+        diceHand.add(1);
         System.out.println(diceHand);
 
         checkForAutoWin();
@@ -156,8 +157,9 @@ public class BackAlleyDiceGame {
         if (checkDoublesWin()) {
             Console.getStringInput(isLoser());
         }
+
         checkDoublesLose();
-        if (checkForAutoLose()){
+        if (checkDoublesLose()){
             Console.getStringInput(isWinner());
         }
 
