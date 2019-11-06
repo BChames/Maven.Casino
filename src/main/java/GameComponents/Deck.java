@@ -9,7 +9,7 @@ import GameComponents.Card.Suit;
 
 public class Deck {
 
-    //Defines arraylist for the cards
+    //Defines arrayList for the cards
     private ArrayList<Card> deck;
 
 

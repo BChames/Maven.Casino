@@ -2,23 +2,26 @@ package Games;
 
 import Interfaces.GamblingGame;
 import Interfaces.Game;
+
+
+import GameComponents.Deck;
+import GameComponents.Card;
+import Hands.Hand;
 import player.Dealer;
 
 import java.util.*;
-public class Blackjack {
-    private static int cash;//cash the user bets with
-    private static int bet;//how much the user wants to bet
-    private static int AceCounter;//how many aces are in the user's hand
-    private static ArrayList<Card> hand;//represents the user's hand
-    private static int handvalue;//the value of the user's hand
-    private static String name;//name of the user
+public class Blackjack implements GamblingGame {
+    public static int cash;//cash the user bets with
+    public static int bet;//how much the user wants to bet
+    public static int AceCounter;//how many aces are in the user's hand
+    public static ArrayList<Card> hand;//represents the user's hand
+    public static int handValue;//the value of the user's hand
+    public static String name;//name of the user
 
     public static void main(String[] args) {
-        System.out.println("Hi! What is your name?");
-        Scanner scan = new Scanner(System.in);
-        name = scan.nextLine();
+
         System.out.println("Hello, " + name + ", lets play some BlackJack!");
-        System.out.println("How much cash do you want to start with?");
+
         Scanner money = new Scanner(System.in);
         cash = money.nextInt();
         System.out.println("You start with cash: " + cash);
@@ -28,21 +31,21 @@ public class Blackjack {
             AceCounter = 0;
             Dealer dealer = new Dealer(deck);
             List<Card> hand = new ArrayList<>();
-            hand.add(deck.drawCard());
-            hand.add(deck.drawCard());
+            hand.add(Deck.drawCard());
+            hand.add(Deck.drawCard());
             System.out.println("How much would you like to bet?");
             bet = Bet(cash);
             System.out.println("Cash:" + (cash - bet));
             System.out.println("Money on the table:" + bet);
             System.out.println("Here is your hand: ");
             System.out.println(hand);
-            int handvalue = calcHandValue(hand);
+            int handValue = calcHandValue(hand);
             System.out.println("The dealer is showing: ");
             dealer.showFirstCard();
-            if (hasBlackJack(handvalue) && dealer.hasBlackJack())//check if both the user and dealer have blackjack.
+            if (hasBlackJack(handValue) && dealer.hasBlackJack())//check if both the user and dealer have blackjack.
             {
                 Push();
-            } else if (hasBlackJack(handvalue))//check if the user has blackjack.
+            } else if (hasBlackJack(handValue))//check if the user has blackjack.
             {
                 System.out.println("You have BlackJack!");
                 System.out.println("You win 2x your money back!");
@@ -82,13 +85,13 @@ public class Blackjack {
                     Hit(deck, hand);
                     System.out.println("Your hand is now:");
                     System.out.println(hand);
-                    handvalue = calcHandValue(hand);
-                    if (checkBust(handvalue))//checks if the user busted
+                    handValue = calcHandValue(hand);
+                    if (checkBust(handValue))//checks if the user busted
                     {
                         Lose();
                         break;
                     }
-                    if (handvalue <= 21 && hand.size() == 5)//checks for a five card trick.
+                    if (handValue <= 21 && hand.size() == 5)//checks for a five card trick.
                     {
                         fivecardtrick();
                         break;
@@ -106,7 +109,7 @@ public class Blackjack {
                     {
                         Win();
                     } else {
-                        int you = 21 - handvalue;//check who is closer to 21 and determine winner
+                        int you = 21 - handValue;//check who is closer to 21 and determine winner
                         int deal = 21 - dealerhand;
                         if (you == deal) {
                             Push();
@@ -158,7 +161,7 @@ public class Blackjack {
         int handvalue = 0;
         for (int i = 0; i < aHand.length; i++) {
             handvalue += aHand[i].getValue();
-            if (aHand[i].getValue() == 11) {
+            if (aHand[i].getCardValue() == 11) {
                 AceCounter++;
             }
             while (AceCounter > 0 && handvalue > 21) {
@@ -214,17 +217,17 @@ public class Blackjack {
      * Adds a card to user's hand and calculates the value of that hand. Aces are taken into account.
      */
     public static void Hit(Deck deck, List<Card> hand) {
-        hand.add(deck.drawCard());
+        hand.add(Deck.drawCard());
         Card[] aHand = new Card[]{};
         aHand = hand.toArray(aHand);
-        handvalue = 0;
+        handValue = 0;
         for (int i = 0; i < aHand.length; i++) {
-            handvalue += aHand[i].getValue();
+            handValue += aHand[i].getValue();
             if (aHand[i].getValue() == 11) {
                 AceCounter++;
             }
-            while (AceCounter > 0 && handvalue > 21) {
-                handvalue -= 10;
+            while (AceCounter > 0 && handValue > 21) {
+                handValue -= 10;
                 AceCounter--;
             }
         }

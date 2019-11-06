@@ -25,6 +25,7 @@ public class Player {
     }
 
     public void setWallet(Double wallet) {
+
         this.wallet = wallet;
     }
 }
