@@ -82,7 +82,7 @@ public class BackAlleyDiceGame {
     public boolean checkDoublesWin() {
         for (int i = 1; i < 7; i++) {
             if (Collections.frequency(diceHand, i) == 2) {
-                if (Collections.frequency(diceHand, 1) == 1) {
+                if (Collections.frequency(diceHand, 6) == 1) {
                     return true;
                 }
             }
@@ -95,7 +95,7 @@ public class BackAlleyDiceGame {
     public boolean checkDoublesLose() {
         for (int i = 1; i < 7; i++) {
             if (Collections.frequency(diceHand, i) == 2) {
-                if (Collections.frequency(diceHand, 6) == 1) {
+                if (Collections.frequency(diceHand, 1) == 1) {
                     return true;
                 }
 
@@ -165,8 +165,8 @@ public class BackAlleyDiceGame {
         if (checkDoublesPoints() > 0) {
             computerPoints += checkDoublesPoints();
             Console.getStringInput("Computer points : " + computerPoints );
-        if (computerPoints > playerPoints){
-            Console.getStringInput("Computer points: " + computerPoints + "Player points :" + playerPoints + "\n press enter to see who won... ");
+        if (computerPoints > 0){
+            Console.getStringInput("Computer points: " + computerPoints + "\nPlayer points :" + playerPoints + "\nPress enter to see who won... ");
             Console.getStringInput(isLoser());
         }
 
