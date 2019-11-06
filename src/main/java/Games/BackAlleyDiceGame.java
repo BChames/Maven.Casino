@@ -4,12 +4,14 @@ import GameComponents.Dice;
 import Interfaces.GamblingGame;
 import Interfaces.GamblingPlayer;
 import io.zipcoder.casino.MainApplication.Console;
+import player.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
     public class BackAlleyDiceGame implements GamblingGame, GamblingPlayer {
+        Player baPlayer = new Player();
         ArrayList<Integer> diceHand = new ArrayList<>();
         private Dice dice = new Dice(3);
         private Integer playerPoints = 0;
@@ -175,14 +177,15 @@ import java.util.Collections;
                 computerPoints += checkDoublesPoints();
                 Console.print("Computer points : " + computerPoints);
                 Console.getStringInput("\nDrum roll please...\n" +
-                        "                     /\n" +
-                        "                 __o____\\____\n" +
-                        "                /._______o__.\\\n" +
-                        "                |'-=-=-=-=-='|\n" +
-                        "                |\\  /\\  /\\  /|\n" +
-                        "                | \\/  \\/  \\/ |\n" +
-                        "                \\'-=-=-=-=-='/\n" +
-                        "                 `\"\"\"\"\"\"\"\"\"\"`\nPress enter to see who won... ");
+                        "                   /\n" +
+                        "               __o____\\____\n" +
+                        "              /._______o__.\\\n" +
+                        "              |'-=-=-=-=-='|\n" +
+                        "              |\\  /\\  /\\  /|\n" +
+                        "              | \\/  \\/  \\/ |\n" +
+                        "              \\'-=-=-=-=-='/\n" +
+                        "               `\"\"\"\"\"\"\"\"\"\"`" +
+                        "\nPress enter to see who won... ");
                 Console.getStringInput(isLoser());
             } else if (!checkForAutoWin() && !checkForAutoLose() && !checkDoublesLose() && !checkDoublesWin() && checkDoublesPoints() == 0) {
                 System.out.println("Computer has a Dead Roll! Rerolling...");
