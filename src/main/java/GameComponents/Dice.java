@@ -3,10 +3,10 @@ package GameComponents;
 <<<<<<< HEAD
 public class Dice {
 
-    int numOfDice = 0;
+    Integer numOfDice = 0;
 
 
-    public void Dice(int numOfDice) {
+    public Dice(Integer numOfDice) {
         this.numOfDice = numOfDice;
     }
     // constructor for dice
