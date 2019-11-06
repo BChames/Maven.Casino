@@ -3,9 +3,10 @@ package io.zipcoder.casino.MainApplication;
 import Games.BackAlleyDiceGame;
 import Games.CrapsGame;
 import Games.DiceGame;
+import player.Player;
 
 public class MainMenu {
-
+Player casinoPlayer = new Player();
     public void getMainMenu() {
         Integer input = Console.getIntegerInput(
                 "\nWelcome to the Casino! " +

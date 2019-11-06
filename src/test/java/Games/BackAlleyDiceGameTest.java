@@ -9,15 +9,6 @@ import static org.junit.Assert.*;
 public class BackAlleyDiceGameTest {
 
     @Test
-    public void startBackAlleyTest() {
-        BackAlleyDiceGame gameTest = new BackAlleyDiceGame();
-        gameTest.startBackAlley();
-    }
-
-
-
-
-    @Test
     public void checkForAutoWin() {
         Dice dice = new Dice (3);
         BackAlleyDiceGame testAutoWin = new BackAlleyDiceGame();
