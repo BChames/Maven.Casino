@@ -4,30 +4,39 @@ import GameComponents.Dice;
 import Interfaces.GamblingGame;
 import Interfaces.GamblingPlayer;
 import io.zipcoder.casino.MainApplication.Console;
-
+import player.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 
     public class BackAlleyDiceGame implements GamblingGame, GamblingPlayer {
-        ArrayList<Integer> diceHand = new ArrayList<Integer>();
+
+        Player baPlayer;
+        ArrayList<Integer> diceHand = new ArrayList<>();
         private Dice dice = new Dice(3);
         private Integer playerPoints = 0;
         private Integer computerPoints = 0;
         private Double playerBet = 0.0;
 
+        public BackAlleyDiceGame(Player casinoPlayer) {
+            this.baPlayer = casinoPlayer;
+        }
 
         public void startBackAlley() {
-            Double playerBet = Console.getDoubleInput("Welcome to BackAlley Dice!\nPlease place your bet. : ");
-            backPlayerRoll();
+                playerBet = Console.getDoubleInput("Welcome to BackAlley Dice!\n You currently have: "+ baPlayer.getWallet() +"\nPlease place your bet : ");
+                if(playerBet > baPlayer.getWallet()){
+                    Console.println("HAHA... no you don't have that much try again :)\n\n");
+                    startBackAlley();
+                }
+                baPlayer.setWallet(baPlayer.getWallet() - playerBet);
+                backPlayerRoll();
         }
 
 
         public void backPlayerRoll() {
-            System.out.println(playerBet);
             diceHand.add(dice.diceToss());
             diceHand.add(dice.diceToss());
             diceHand.add(dice.diceToss());
-            System.out.println(diceHand);
+            Console.println(diceHand.toString());
 
             checkForAutoWin();
             if (checkForAutoWin()) {
@@ -125,22 +134,26 @@ import java.util.Collections;
             return points;
         }
 
+
         public String isWinner() {
-            return "CONGRATS YOU WON ! WOO \n You won :" + "Your bet" + playerBet + playerBet * .5 + "\nDon't spend it all in once place :)";
+            baPlayer.setWallet(baPlayer.getWallet() + playerBet*1.5);
+            return "CONGRATS YOU WON ! WOO \n You won :" + "Your bet + half :  " + playerBet * 1.5 +
+                    "\nYour wallet now has: $" + baPlayer.getWallet() +
+                    "\nDon't spend it all in once place :)";
 
         }
 
         public String isLoser() {
-            return "You lose.. awkward..." + "\nYour bet" + playerBet + "is ours now.....";
+            return "You lose.. awkward..." + "\nYour bet of $" + playerBet + " is ours now....." +
+                    "\nYour wallet now has: $" + baPlayer.getWallet();
         }
 
         public void backComputerRoll() {
             diceHand.clear();
-
             diceHand.add(dice.diceToss());
             diceHand.add(dice.diceToss());
             diceHand.add(dice.diceToss());
-            System.out.println(diceHand);
+            Console.println(diceHand.toString());
 
             checkForAutoWin();
             if (checkForAutoWin()) {
@@ -163,10 +176,21 @@ import java.util.Collections;
 
             checkDoublesPoints();
             if (checkDoublesPoints() > 0) {
-                computerPoints += checkDoublesPoints();
-                Console.getStringInput("Computer points : " + computerPoints);
-                Console.getStringInput("Computer points: " + computerPoints + "\nPlayer points :" + playerPoints + "\nPress enter to see who won... ");
-                Console.getStringInput(isLoser());
+                computerPoints = checkDoublesPoints();
+                Console.print("Computer points : " + computerPoints);
+                Console.getStringInput("\nDrum roll please...\n" +
+                        "                 /\n" +
+                        "              __o____\\____\n" +
+                        "            /._______o__.\\\n" +
+                        "            |'-=-=-=-=-='|\n" +
+                        "            |\\  /\\  /\\  /|\n" +
+                        "            | \\/  \\/  \\/ |\n" +
+                        "            \\'-=-=-=-=-='/\n" +
+                        "             `\"\"\"\"\"\"\"\"\"\"`" +
+                        "\nPress enter to see who won... ");
+               if (computerPoints > playerPoints) {Console.print(isLoser());}
+               else Console.print(isWinner());
+
             } else if (!checkForAutoWin() && !checkForAutoLose() && !checkDoublesLose() && !checkDoublesWin() && checkDoublesPoints() == 0) {
                 System.out.println("Computer has a Dead Roll! Rerolling...");
                 diceHand.clear();
