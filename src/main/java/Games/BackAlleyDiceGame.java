@@ -5,6 +5,7 @@ import Interfaces.GamblingGame;
 import Interfaces.GamblingPlayer;
 import io.zipcoder.casino.MainApplication.Console;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -17,13 +18,17 @@ import java.util.Collections;
 
 
         public void startBackAlley() {
-            Double playerBet = Console.getDoubleInput("Welcome to BackAlley Dice!\nPlease place your bet. : ");
+            try{
+            Double playerBet = Console.getDoubleInput("Welcome to BackAlley Dice!\nPlease place your bet. : ");}
+            catch (Exception exception){
+                Console.getStringInput("Try putting a number this time... Thank you");
+                startBackAlley();
+            }
             backPlayerRoll();
         }
 
 
         public void backPlayerRoll() {
-            System.out.println(playerBet);
             diceHand.add(dice.diceToss());
             diceHand.add(dice.diceToss());
             diceHand.add(dice.diceToss());
@@ -126,7 +131,8 @@ import java.util.Collections;
         }
 
         public String isWinner() {
-            return "CONGRATS YOU WON ! WOO \n You won :" + "Your bet" + playerBet + playerBet * .5 + "\nDon't spend it all in once place :)";
+            return "CONGRATS YOU WON ! WOO \n You won :" + "Your bet  " + playerBet + "+" + playerBet * .5 + "\nDon't spend it all in once place :)";
+
 
         }
 
@@ -136,10 +142,13 @@ import java.util.Collections;
 
         public void backComputerRoll() {
             diceHand.clear();
+            diceHand.add(1);
+            diceHand.add(1);
+            diceHand.add(5);
 
-            diceHand.add(dice.diceToss());
-            diceHand.add(dice.diceToss());
-            diceHand.add(dice.diceToss());
+//            diceHand.add(dice.diceToss());
+//            diceHand.add(dice.diceToss());
+//            diceHand.add(dice.diceToss());
             System.out.println(diceHand);
 
             checkForAutoWin();
@@ -164,8 +173,16 @@ import java.util.Collections;
             checkDoublesPoints();
             if (checkDoublesPoints() > 0) {
                 computerPoints += checkDoublesPoints();
-                Console.getStringInput("Computer points : " + computerPoints);
-                Console.getStringInput("Computer points: " + computerPoints + "\nPlayer points :" + playerPoints + "\nPress enter to see who won... ");
+                Console.print("Computer points : " + computerPoints);
+                Console.getStringInput("\nDrum roll please...\n" +
+                        "                     /\n" +
+                        "                 __o____\\____\n" +
+                        "                /._______o__.\\\n" +
+                        "                |'-=-=-=-=-='|\n" +
+                        "                |\\  /\\  /\\  /|\n" +
+                        "                | \\/  \\/  \\/ |\n" +
+                        "                \\'-=-=-=-=-='/\n" +
+                        "                 `\"\"\"\"\"\"\"\"\"\"`\nPress enter to see who won... ");
                 Console.getStringInput(isLoser());
             } else if (!checkForAutoWin() && !checkForAutoLose() && !checkDoublesLose() && !checkDoublesWin() && checkDoublesPoints() == 0) {
                 System.out.println("Computer has a Dead Roll! Rerolling...");
