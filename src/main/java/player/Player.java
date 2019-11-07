@@ -1,5 +1,7 @@
 package player;
 
+import GameComponents.Card;
+
 public class Player {
 
     private String userName;
@@ -7,6 +9,10 @@ public class Player {
 
     public Player(String userName, Double wallet){
         this.userName = userName;
+
+    }
+
+    public Player() {
 
     }
 
@@ -25,4 +31,6 @@ public class Player {
     public void setWallet(Double wallet) {
         this.wallet = wallet;
     }
+
+
 }
