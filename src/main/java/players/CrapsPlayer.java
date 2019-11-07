@@ -1,14 +1,28 @@
 package players;
 
-    public class CrapsPlayer {
-        public Double wallet = 300.0;
-        public Double getWallet() {
-            return wallet;
+import Interfaces.GamblingPlayer;
+
+public class CrapsPlayer extends Player implements GamblingPlayer {
+
+        private Player gamblingPlayer;
+
+        public CrapsPlayer(Player user) {
+            super(0);
         }
 
-        public void setWallet(Double wallet) {
-            this.wallet = wallet;
-        }
+    public CrapsPlayer() {
+
+    }
+
+    @Override
+    public Double placeBet() {
+        return null;
+    }
+
+
+    //public void setWallet(Double wallet) {
+            //this.wallet = wallet;
+       // }
 
 
     /*public CrapsPlayer(Double wallet){
