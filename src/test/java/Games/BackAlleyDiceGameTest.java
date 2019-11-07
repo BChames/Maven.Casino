@@ -2,25 +2,24 @@ package Games;
 
 import GameComponents.Dice;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import player.Player;
+import Games.BackAlleyDiceGame;
 
 import static org.junit.Assert.*;
 
 public class BackAlleyDiceGameTest {
-
-    @Test
-    public void startBackAlleyTest() {
-        BackAlleyDiceGame gameTest = new BackAlleyDiceGame();
-        gameTest.startBackAlley();
+    Player casinoPlayer;
+    @Before
+    public void setUp(){
+        casinoPlayer = new Player();
     }
-
-
-
 
     @Test
     public void checkForAutoWin() {
         Dice dice = new Dice (3);
-        BackAlleyDiceGame testAutoWin = new BackAlleyDiceGame();
+        BackAlleyDiceGame testAutoWin = new BackAlleyDiceGame(casinoPlayer);
         testAutoWin.diceHand.add(1);
         testAutoWin.diceHand.add(1);
         testAutoWin.diceHand.add(1);
@@ -31,7 +30,7 @@ public class BackAlleyDiceGameTest {
     @Test
     public void checkForAutoWin2() {
         Dice dice = new Dice (3);
-        BackAlleyDiceGame testAutoWin = new BackAlleyDiceGame();
+        BackAlleyDiceGame testAutoWin = new BackAlleyDiceGame(casinoPlayer);
         testAutoWin.diceHand.add(4);
         testAutoWin.diceHand.add(6);
         testAutoWin.diceHand.add(5);
@@ -43,7 +42,7 @@ public class BackAlleyDiceGameTest {
     @Test
     public void checkForAutoLose() {
         Dice dice = new Dice (3);
-        BackAlleyDiceGame testAutoLose = new BackAlleyDiceGame();
+        BackAlleyDiceGame testAutoLose = new BackAlleyDiceGame(casinoPlayer);
         testAutoLose.diceHand.add(1);
         testAutoLose.diceHand.add(3);
         testAutoLose.diceHand.add(2);
@@ -54,7 +53,7 @@ public class BackAlleyDiceGameTest {
     @Test
     public void checkDoublesWin() {
         Dice dice = new Dice (3);
-        BackAlleyDiceGame testDoubleWin = new BackAlleyDiceGame();
+        BackAlleyDiceGame testDoubleWin = new BackAlleyDiceGame(casinoPlayer);
         testDoubleWin.diceHand.add(4);
         testDoubleWin.diceHand.add(4);
         testDoubleWin.diceHand.add(6);
@@ -66,7 +65,7 @@ public class BackAlleyDiceGameTest {
     @Test
     public void testDoubleLose(){
         Dice dice = new Dice(1);
-        BackAlleyDiceGame testingPoints = new BackAlleyDiceGame();
+        BackAlleyDiceGame testingPoints = new BackAlleyDiceGame(casinoPlayer);
         testingPoints.diceHand.add(1);
         testingPoints.diceHand.add(5);
         testingPoints.diceHand.add(5);
@@ -77,7 +76,7 @@ public class BackAlleyDiceGameTest {
     @Test
     public void testDoublesPoints() {
         Dice dice = new Dice(3);
-        BackAlleyDiceGame testingPoints = new BackAlleyDiceGame();
+        BackAlleyDiceGame testingPoints = new BackAlleyDiceGame(casinoPlayer);
         testingPoints.diceHand.add(1);
         testingPoints.diceHand.add(1);
         testingPoints.diceHand.add(5);
@@ -89,7 +88,7 @@ public class BackAlleyDiceGameTest {
     @Test
     public void checkDoublesPoints() {
         Dice dice = new Dice(3);
-        BackAlleyDiceGame testingPoints = new BackAlleyDiceGame();
+        BackAlleyDiceGame testingPoints = new BackAlleyDiceGame(casinoPlayer);
         testingPoints.diceHand.add(2);
         testingPoints.diceHand.add(2);
         testingPoints.diceHand.add(4);
