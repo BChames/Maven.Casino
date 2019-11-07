@@ -9,6 +9,9 @@ public class Player {
 
     }
 
+    public Player() {
+    }
+
     public Integer getWallet() {
         return wallet;
     }
