@@ -1,60 +1,33 @@
 package Games;
 
 import GameComponents.Dice;
-//<<<<<<< HEAD
-//import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.zipcoder.casino.MainApplication.Console;
-//import jdk.nashorn.internal.ir.WhileNode;
-//=======
 import Interfaces.GamblingGame;
-import Interfaces.GamblingPlayer;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import io.zipcoder.casino.MainApplication.Console;
 import io.zipcoder.casino.MainApplication.MainMenu;
-import jdk.nashorn.internal.ir.WhileNode;
-import players.CrapsPlayer;
-import players.Player;
-//import player.CrapsPlayer;
-// import player.Player;
-//>>>>>>> Craps
-
+import player.Player;
 import java.util.Scanner;
 
 public class CrapsGame implements GamblingGame {
     Dice dice = new Dice(2);
-    CrapsPlayer crapsPlayer;
-    Integer wager;
+    Double wager =0.0;
+    Player crapsPlayer;
     MainMenu userInput = new MainMenu();
 
-    public CrapsGame (CrapsPlayer user){
-        //this.user = crapsPlayer;
-        this.wager = 0;
-    }
-
-    public CrapsGame() {
-
-    }
+    public CrapsGame (Player casinoPlayer){this.crapsPlayer = casinoPlayer;}
 
     public void startCraps() {
-        addToBet();
+        addBet();
         firstRoll();
-        continuePlayingMenu();
     }
-
-    private void continuePlayingMenu() {
-        Integer input = Console.getIntegerInput("\nDo you want to play again? \n1. Yes \n2. No");
-        continueMenu(input);
+    public void addBet(){
+        Scanner scan = new Scanner(System.in);
+        wager = Console.getDoubleInput("Welcome to Craps! How much would you like to wager? " + crapsPlayer.getWallet());
+        crapsPlayer.setWallet(crapsPlayer.getWallet()-wager);
+        Console.print("You have chosen to wager $" + wager + ". Good luck!");
     }
 
     @Override
     public Double addToBet() {
-        Scanner scan = new Scanner(System.in);
-        Console.print("Welcome to Craps! How much would you like to wager?");
-
-        wager = scan.nextInt();
-
-        Console.print("You have chosen to wager $" + wager + ". Good luck!");
-
         return null;
     }
 
@@ -62,16 +35,24 @@ public class CrapsGame implements GamblingGame {
     public Double payOut() {
         return  null;
     }
+    public void isWinner(){
+        crapsPlayer.setWallet(crapsPlayer.getWallet()+wager*2);
+        Console.print("Congratulations! You matched your point. You won $" + wager*2 + "\nYour current total is " + crapsPlayer.getWallet());
+        continueMenu(crapsPlayer);
+    }
+    public void isLoser(){
+        Console.print("Sorry, you rolled a 7. You lost $" + wager + "\nYour current total is " + crapsPlayer.getWallet());
+        continueMenu(crapsPlayer);
+    }
 
     public void firstRoll() {
         Console.getStringInput("\nPress enter to roll the dice");
         int roll = dice.tossAndSum();
         //Console.print(""+roll);
         if (roll == 7 || roll == 11) {
-
-            Console.print("Congratulations! You rolled a " + roll + ". You won $" + wager);
+            isWinner();
         } else if (roll == 2 || roll == 3 || roll == 12) {
-            Console.print("Sorry, you rolled a " + roll + ". You lost $" + wager);
+            isLoser();
         } else {
             int point = roll;
             Boolean keepPlaying = true;
@@ -80,11 +61,11 @@ public class CrapsGame implements GamblingGame {
             while (keepPlaying) {
                 int roll2 = dice.tossAndSum();
                 if (roll2 == 7) {
-                    Console.print("Sorry, you rolled a 7. You lost $" + wager);
+                    isLoser();
                     keepPlaying = false;
                 } else {
                     if (roll2 == point) {
-                        Console.print("Congratulations! You rolled a " + roll2 + " and matched your point. You won $" + wager);
+                        isWinner();
                         keepPlaying = false;
                     } else {
                         Console.getStringInput("You rolled a " + roll2 + ". Press enter to roll the dice.");
@@ -93,14 +74,15 @@ public class CrapsGame implements GamblingGame {
             }
         }
     }
-    private void continueMenu(Integer input){
-        switch (input){
+    private void continueMenu(Player player){
+        Integer choice = Console.getIntegerInput("\nWhat would you like to do now?\nPress 1: Continue playing\nPress 2: Go back to Main menu");
+
+        switch (choice){
             case 1:
                 startCraps();
                 break;
             case  2:
-                MainMenu main = new MainMenu();
-                main.getMainMenu();
+
                 break;
         }
     }

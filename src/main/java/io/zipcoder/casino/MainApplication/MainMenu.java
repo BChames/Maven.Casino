@@ -40,7 +40,7 @@ public class MainMenu {
                 case 2:
                     break;
                 case 3:
-                    CrapsGame craps = new CrapsGame();
+                    CrapsGame craps = new CrapsGame(player);
                     craps.startCraps();
                     break;
                 case 4:
