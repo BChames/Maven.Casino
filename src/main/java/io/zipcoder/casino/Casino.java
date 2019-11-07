@@ -9,6 +9,6 @@ public class Casino {
     public static void main(String[] args) {
         // write your tests before you start fucking with this
         MainMenu newMainMenu = new MainMenu();
-        newMainMenu.userMoneyMenu();
+        newMainMenu.getMainInputMenu();
     }
 }
