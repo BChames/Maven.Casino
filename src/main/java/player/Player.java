@@ -3,12 +3,16 @@ package player;
 public class Player {
 
     private String userName;
-    private Double wallet;
+    private Double wallet = 300.0;
 
     public Player(String userName, Double wallet){
         this.userName = userName;
-
     }
+
+    public Player() {
+        this.userName = "Player 1";
+        this.wallet = 300.0;
+    } // default constructor
 
     public String getUserName() {
         return userName;

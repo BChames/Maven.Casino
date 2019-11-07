@@ -1,4 +1,4 @@
-package player;
+package players;
 
 import Hands.BlackJackHand;
 import Interfaces.GamblingPlayer;

@@ -1,10 +1,9 @@
 package Games;
 
-import GameComponents.DeckOfCards;
-import player.Player;
+
 
 abstract class CardGame {
-    DeckOfCards deckOfCards;
+  /**  DeckOfCards deckOfCards;
     Player player;
 
     public CardGame() {
@@ -27,4 +26,5 @@ abstract class CardGame {
         }
 
     }
-}
+   }*/
+   }
