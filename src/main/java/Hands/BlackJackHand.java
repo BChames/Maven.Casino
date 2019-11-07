@@ -1,17 +1,19 @@
 package Hands;
 import GameComponents.Card;
-
+import Hands.Hand;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BlackjackHand extends Hand {
+public class BlackJackHand extends Hand{
+    Hand hand;
+    // public ArrayList hand;
     Integer handValue;
     Map<String, Integer> valueMap = new HashMap();
 
-    public BlackjackHand(Card... cards) {
+    public BlackJackHand(Card... cards) {
 
-        this.hand = new ArrayList();
+     //   this.hand = new ArrayList();
     }
 
     public String getHand() {
@@ -25,6 +27,7 @@ public class BlackjackHand extends Hand {
     }
 
     public Integer calculateHandValue() {
+
         return null;
     }
 

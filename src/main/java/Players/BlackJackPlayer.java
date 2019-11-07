@@ -2,8 +2,10 @@ package Players;
 
 import GameComponents.Deck;
 import Hands.BlackJackHand;
+import Hands.Hand;
 import Interfaces.GamblingPlayer;
 import GameComponents.Card;
+import Games.BlackJack;
 
 public class BlackJackPlayer implements GamblingPlayer {
     Player BlackJackPlayer;
@@ -12,10 +14,17 @@ public class BlackJackPlayer implements GamblingPlayer {
     public Card.CardValue handValue;//value of the dealer's hand (starts at 0)
     public Card[] aHand;//used to convert the dealer's hand to an array
     public int AceCounter;//counts the aces in the dealer's hand
+    Hand dealer;
+    Player player;
+    Deck deck;
+    Deck getRandomCard;
 
     public BlackJackPlayer(Player player) {
 
         this.BlackJackPlayer = player;
+    }
+
+    public BlackJackPlayer() {
     }
 
     public Double placeBet() {
@@ -23,7 +32,7 @@ public class BlackJackPlayer implements GamblingPlayer {
         return null;
     }
 
-    public void Card hit() {
+        public void Card hit() {
         hand.add(deck.drawCard());
         aHand = hand.toArray(aHand);
         handValue = 0;
@@ -41,7 +50,7 @@ public class BlackJackPlayer implements GamblingPlayer {
     }
 
 
-    public void showFirstCard () {
+    public void showTopCard () {
         Card[] firstCard = new Card[]{};
         firstCard = hand.toArray(firstCard);
         System.out.println("[" + firstCard[0] + "]");

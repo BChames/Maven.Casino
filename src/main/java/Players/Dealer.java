@@ -11,6 +11,7 @@ import java.util.Arrays;
 public class Dealer {
     ArrayList<Card> hand;//represents the dealer's hand
 
+    Dealer dealer = new Dealer();
     Deck dealerDeck = new Deck();
 
     public Dealer() {
@@ -18,6 +19,7 @@ public class Dealer {
     }
 
     public void dealerDeal() {
+
         dealerDeck.drawCard();
     }
 }
