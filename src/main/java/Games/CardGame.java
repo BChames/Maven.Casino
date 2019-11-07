@@ -8,9 +8,8 @@ abstract class CardGame {
     Player player;
 
     public CardGame() {
-        public CardGame(Deck deckOfCards, APIPlayer apiPlayer, player Player) {
+        public CardGame(Deck deckOfCards, Player player) {
             this.deckOfCards = deckOfCards;
-            this.apiPlayer = apiPlayer;
             this.player = player;
         }
         public void startGame() {

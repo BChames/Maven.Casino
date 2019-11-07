@@ -9,7 +9,7 @@ import Players.Dealer;
 import Players.Player;
 import java.util.*;
 
-public class BlackJack implements GamblingGame {
+public class BlackJackGame implements GamblingGame {
 
     Hand dealer;
     Deck newdeck;
@@ -26,14 +26,9 @@ public class BlackJack implements GamblingGame {
 
     public BlackJack() {
       dealInitialCards();
-      playerHand.getHandValue()
+      playerHand.
 
     }
-
-
-
-
-
 
     public void dealInitialCards() {
 

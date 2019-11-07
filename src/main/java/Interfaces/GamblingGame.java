@@ -1,6 +1,6 @@
 package Interfaces;
 
-public interface GamblingGame {
+public interface    GamblingGame {
     Double addToBet();
     Double payOut(Double amount);
 }
