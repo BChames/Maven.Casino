@@ -1,4 +1,4 @@
-package player;
+package players;
 
 import GameComponents.Card;
 import Hands.Hand;

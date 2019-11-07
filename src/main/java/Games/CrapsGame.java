@@ -1,49 +1,102 @@
 package Games;
 
 import GameComponents.Dice;
+//<<<<<<< HEAD
 //import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.zipcoder.casino.MainApplication.Console;
 //import jdk.nashorn.internal.ir.WhileNode;
+//=======
+import Interfaces.GamblingGame;
+import io.zipcoder.casino.MainApplication.MainMenu;
+import players.CrapsPlayer;
+//import player.CrapsPlayer;
+// import player.Player;
+//>>>>>>> Craps
 
-public class CrapsGame{
-Dice dice = new Dice(2);
+import java.util.Scanner;
 
-public void startCraps() {
-        String start = Console.getStringInput("Welcome to Craps! \n Press enter to begin game");
+public class CrapsGame implements GamblingGame {
+    Dice dice = new Dice(2);
+    CrapsPlayer crapsPlayer;
+    Integer wager;
+    MainMenu userInput = new MainMenu();
+
+    public CrapsGame (CrapsPlayer user){
+        //this.user = crapsPlayer;
+        this.wager = 0;
+    }
+
+    public CrapsGame() {
+
+    }
+
+    public void startCraps() {
+        addToBet();
         firstRoll();
+        continuePlayingMenu();
     }
 
-public void firstRoll(){
-    String firstRoll = Console.getStringInput("Press enter to roll the dice");
-    int roll = dice.tossAndSum();
-    System.out.println(""+roll);
-if (roll == 7 || roll == 11){
-    System.out.println("You rolled a "+roll+". You win!");
-}
-else if (roll == 2 || roll == 3 || roll == 12){
-    System.out.println("You rolled a "+roll+". You lose!");
-}
-else {
-    int point = roll;
-    Boolean keepPlaying = true;
+    private void continuePlayingMenu() {
+        Integer input = Console.getIntegerInput("\nDo you want to play again? \n1. Yes \n2. No");
+        continueMenu(input);
+    }
 
-    while (keepPlaying) {
+    @Override
+    public Double addToBet() {
+        Scanner scan = new Scanner(System.in);
+        Console.print("Welcome to Craps! How much would you like to wager?");
 
-        String secondRoll = Console.getStringInput("You rolled a " + roll + ". Press enter to roll the dice.");
+        wager = scan.nextInt();
 
-        //Match the point to win
+        Console.print("You have chosen to wager $" + wager + ". Good luck!");
 
-        int roll2 = dice.tossAndSum();
-        if (roll2 == point) {
-            System.out.println("You rolled a " + roll2 + " and matched your point. You win!");
-            keepPlaying = false;
-        }
-        //Did they win? (roll a 7)
-        else if (dice.tossAndSum() == 7) {
-            System.out.println("You rolled a 7. You lose!");
-            keepPlaying = false;
+        return null;
+    }
+
+    @Override
+    public Double payOut() {
+        return  null;
+    }
+
+    public void firstRoll() {
+        Console.getStringInput("\nPress enter to roll the dice");
+        int roll = dice.tossAndSum();
+        //Console.print(""+roll);
+        if (roll == 7 || roll == 11) {
+
+            Console.print("Congratulations! You rolled a " + roll + ". You won $" + wager);
+        } else if (roll == 2 || roll == 3 || roll == 12) {
+            Console.print("Sorry, you rolled a " + roll + ". You lost $" + wager);
+        } else {
+            int point = roll;
+            Boolean keepPlaying = true;
+            Console.getStringInput("You rolled a " + roll + ". Press enter to roll the dice.");
+            //Match the point to win
+            while (keepPlaying) {
+                int roll2 = dice.tossAndSum();
+                if (roll2 == 7) {
+                    Console.print("Sorry, you rolled a 7. You lost $" + wager);
+                    keepPlaying = false;
+                } else {
+                    if (roll2 == point) {
+                        Console.print("Congratulations! You rolled a " + roll2 + " and matched your point. You won $" + wager);
+                        keepPlaying = false;
+                    } else {
+                        Console.getStringInput("You rolled a " + roll2 + ". Press enter to roll the dice.");
+                    }
+                }
+            }
         }
     }
-}
-}
+    private void continueMenu(Integer input){
+        switch (input){
+            case 1:
+                startCraps();
+                break;
+            case  2:
+                MainMenu main = new MainMenu();
+                main.getMainMenu();
+                break;
+        }
+    }
 }
