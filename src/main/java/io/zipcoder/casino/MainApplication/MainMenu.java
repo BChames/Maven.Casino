@@ -10,8 +10,9 @@ import player.Player;
 
 public class MainMenu {
 
-
+    Boolean menuRun = true;
     Player casinoPlayer = new Player();
+
 
         public void getMainInputMenu () {
 
@@ -20,9 +21,10 @@ public class MainMenu {
 
     public void mainMenuActions(Player player) {
 
-        Boolean menuRun = true;
+
 
         while (menuRun) {
+
             Integer input = Console.getIntegerInput(
                     "\nWelcome to the Casino! " +
                             "\nWhere you don't need money, because all you got is time to spend\n\nYour current balance is: $" + casinoPlayer.getWallet() +
@@ -32,7 +34,7 @@ public class MainMenu {
                             "\n" +
                             "DICE GAMES! \n" +
                             "3. Craps\n" +
-                            "4. BackAlley Dice\n" +
+                            "4. BackAlley Dice\n\n\n" +
                             "5. Exit Casino");
 
             switch (input) {
