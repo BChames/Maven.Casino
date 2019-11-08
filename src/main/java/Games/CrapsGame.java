@@ -39,15 +39,15 @@ public class CrapsGame{
     }
     public void isAutoWinner(){
         crapsPlayer.setWallet(crapsPlayer.getWallet()+wager*2);
-        Console.println("Congratulations! You rolled a " +roll+" You won $" + wager*2 + "\nYour current total is " + crapsPlayer.getWallet());
+        Console.println("Congratulations! You rolled a " +roll+" and won $" + wager + "\nYour current total is " + crapsPlayer.getWallet());
         continueMenu(crapsPlayer);
     }
     public void isLoser(){
-        Console.println("Sorry, you rolled a 7. You lost $" + wager + "\nYour current total is " + crapsPlayer.getWallet());
+        Console.println("Sorry... you rolled a 7. You lost $" + wager + "\nYour current total is " + crapsPlayer.getWallet());
         continueMenu(crapsPlayer);
     }
     public void isAutoLoser(){
-        Console.println("Sorry, you rolled a "+roll+". You lose! %"+wager);
+        Console.println("Sorry, you rolled a "+roll+". You lost $"+wager+ "\nYour current total is \" + crapsPlayer.getWallet()");
         continueMenu(crapsPlayer);
     }
     public Boolean autoWin(){

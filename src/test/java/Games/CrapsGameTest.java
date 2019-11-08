@@ -35,15 +35,15 @@ public void setUP () {
         Dice dice = new Dice (2);
         CrapsGame testAutoLose = new CrapsGame(casinoPlayer);
         testAutoLose.dice.tossAndSum();
-        Boolean actual = testAutoLose.autoLose();
-        assertEquals(false, actual);
+        Boolean actual = !testAutoLose.autoLose();
+        assertEquals(true, actual);
     }
     @Test
     public void autoLoseTest2() {
         Dice dice = new Dice (2);
         CrapsGame testAutoLose = new CrapsGame(casinoPlayer);
         testAutoLose.dice.tossAndSum();
-        Boolean actual = !testAutoLose.autoLose();
-        assertEquals(true, actual);
+        Boolean actual = testAutoLose.autoLose();
+        assertEquals(false, actual);
     }
 }
