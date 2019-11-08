@@ -1,6 +1,7 @@
 package io.zipcoder.casino.MainApplication;
 
 import Games.BackAlleyDiceGame;
+import Games.BlackJackGame;
 import Games.CrapsGame;
 import player.Player;
 
@@ -39,6 +40,8 @@ public class MainMenu {
                 case 1:
                     break;
                 case 2:
+                    BlackJackGame blackJack = new BlackJackGame(player);
+                    blackJack.startBlackJack();
                     break;
                 case 3:
                     CrapsGame craps = new CrapsGame(player);

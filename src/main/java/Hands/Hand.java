@@ -87,6 +87,58 @@ public class Hand {
     public static void main(String[] args) {
         // write your code here
     }
+    public void showPlayerCardValues() {
+        System.out.println("^Your cards are");
+        System.out.println(cardsInHand);
 
+    }
+    //Print the dealers card values
+    public void showDealerCardValues() {
+        System.out.println("^Dealer cards are");
+        System.out.println(cardsInHand);
+
+    }
+
+    //sum of players total cards
+    public int printCurrentHand() {
+        int handValue = 0;
+
+        for (int i = 0; i < cardsInHand.size(); i++) {
+            if (cardsInHand.get(i) != null) {
+                handValue += cardsInHand.get(i).getCardValue();
+            }
+
+        }
+        System.out.println( "Your total cards are " + handValue);
+        return handValue;
+    }
+
+    //sum of players total cards
+    public int sumOfCurrentHand() {
+        int handValue = 0;
+
+        for (int i = 0; i < cardsInHand.size(); i++) {
+            if (cardsInHand.get(i) != null) {
+                handValue += cardsInHand.get(i).getCardValue();
+            }
+        }
+        return handValue;
+    }
+    public int printDealerCurrentHand() {
+        int handValue = 0;
+
+        for (int i = 0; i < cardsInHand.size(); i++) {
+            if (cardsInHand.get(i) != null) {
+                handValue += cardsInHand.get(i).getCardValue();
+            }
+
+        }
+        System.out.println( "Dealer total cards are " + handValue);
+        return handValue;
+    }
 
 }
+
+
+
+
