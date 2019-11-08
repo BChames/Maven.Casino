@@ -2,6 +2,8 @@ package io.zipcoder.casino.MainApplication;
 
 import Games.BackAlleyDiceGame;
 import Games.CrapsGame;
+import Games.DiceGame;
+import Games.GoFishGame;
 import player.Player;
 
 
@@ -37,6 +39,8 @@ public class MainMenu {
 
             switch (input) {
                 case 1:
+                    GoFishGame gofish = new GoFishGame();
+                    gofish.startGoFish();
                     break;
                 case 2:
                     break;
