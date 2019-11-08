@@ -1,8 +1,10 @@
 package io.zipcoder.casino.MainApplication;
 
+import Games.BackAlleyDiceGame;
+import Games.BlackJackGame;
+import Games.CrapsGame;
 import Games.*;
 import player.Player;
-
 
 
 public class MainMenu {
@@ -11,7 +13,7 @@ public class MainMenu {
     Player casinoPlayer = new Player();
 
 
-        public void getMainInputMenu () {
+    public void getMainInputMenu() {
 
         mainMenuActions(casinoPlayer);
     }
@@ -57,7 +59,8 @@ public class MainMenu {
                         gofish.startGoFish();
                         break;
                     case 2:
-
+                        BlackJackGame blackJack = new BlackJackGame(player);
+                        blackJack.startBlackJack();
                         break;
                     case 3:
                         CrapsGame craps = new CrapsGame(player);
@@ -73,13 +76,16 @@ public class MainMenu {
                         break;
                     default:
                         Console.println("\nInvalid selection. Please try again.");
+                        break;
                 }
-            }catch(Exception exception){
+
+            } catch (Exception exception) {
                 Console.println("Dont do that..Please behave and try again.");
                 mainMenuActions(player);
             }
         }
     }
-        }
+}
+
 
 
