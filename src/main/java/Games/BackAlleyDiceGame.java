@@ -22,7 +22,7 @@ import java.util.Collections;
         }
 
         public void startBackAlley() {
-            playerBet = Console.getDoubleInput("\n\nWelcome to BackAlley Dice!\n You currently have: " + baPlayer.getWallet() + "\nPlease place your bet : ");
+            playerBet = Console.getDoubleInput("\n\nWelcome to BackAlley Dice!\nYou currently have: " + baPlayer.getWallet() + "\nPlease place your bet : ");
             if (playerBet > baPlayer.getWallet()) {
                 Console.println("HAHA... no you don't have that much try again :)\n\n");
                 startBackAlley();
@@ -139,9 +139,9 @@ import java.util.Collections;
         public void isWinner() {
             baPlayer.setWallet(baPlayer.getWallet() + (playerBet * 2));
 
-            Console.println("CONGRATS YOU WON ! WOO \n You won :" + "Your bet x2:  " + playerBet * 2 +
+            Console.println("CONGRATS YOU WON ! WOO \nYou won :" + "Your bet x2:  " + playerBet * 2 +
                     "\nYour wallet now has: $" + baPlayer.getWallet() +
-                    "\nDon't spend it all in once place :)");
+                    "\n\nDon't spend it all in once place :)");
             resetGame();
             transitionMenu(baPlayer);
 
@@ -155,13 +155,13 @@ import java.util.Collections;
                 transitionMenu(baPlayer);}
             resetGame();
             transitionMenu(baPlayer);
-
         }
 
         public void resetGame() {
             playerPoints = 0;
             computerPoints =0;
             diceHand.clear();
+
         }
 
         public void backComputerRoll() {

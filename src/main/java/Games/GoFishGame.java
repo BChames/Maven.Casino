@@ -1,4 +1,6 @@
 package Games;
+import io.zipcoder.casino.MainApplication.Console;
+import io.zipcoder.casino.MainApplication.MainMenu;
 //import GameComponents.Card;
 //import player.Player;
 
@@ -7,10 +9,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-public class GoFishGame {
+public class GoFishGame extends CardGame {
     static final Random rng = new Random();
     static private ArrayList<Card> cards;
     static public Player[] Players;
+
+    MainMenu userInput = new MainMenu();
+
+   /* public void startGoFish() {
+        draw();
+        deckSize();
+       } */
 
     public static Card draw(){
         return cards.remove(rng.nextInt(cards.size()));
@@ -20,7 +29,7 @@ public class GoFishGame {
         return cards.size();
     }
 
-    public static void main(String[] args){
+    public void startGoFish(){
 
         cards = new ArrayList<Card>();
         for(int i=0;i<4;i++)
@@ -32,19 +41,26 @@ public class GoFishGame {
 
         while(Players[0].getNumBooks() + Players[1].getNumBooks() < 13){
             Players[0].haveTurn();
-            System.out.println("----------");
+            Console.print(" \n ----------");
+            //System.out.println("----------");
             Players[1].haveTurn();
-            System.out.println("----------");
+           // System.out.println("----------");
+            Console.print("\n ----------");
         }
 
         int yScore = Players[0].getNumBooks(); int aiScore = Players[1].getNumBooks();
         if (yScore > aiScore)
-            System.out.println("Congratulations, you win "+ yScore + " to "+ aiScore +"!");
+           // System.out.println("Congratulations, you win "+ yScore + " to "+ aiScore +"!");
+        Console.print("\n Congratulations, you win "+ yScore + " to "+ aiScore +"!");
         else if (aiScore > yScore)
-            System.out.println("The terrible AI beat you "+ yScore + " to "+ aiScore +"...");
+          //  System.out.println("The terrible AI beat you "+ yScore + " to "+ aiScore +"...");
+        Console.print("\n The terrible AI beat you "+ yScore + " to "+ aiScore +"...");
         else
-            System.out.println("It's a tie at "+yScore+" each!");
+           // System.out.println("It's a tie at "+yScore+" each!");
+          Console.print("\n It's a tie at "+yScore+" each!");
     }
+
+
 }
 
   enum Card {
@@ -100,7 +116,8 @@ abstract class Player {
         if (GoFishGame.deckSize() > 0)
             hand.add(GoFishGame.draw());
         else
-            System.out.println("But that's impossible since the deck is empty.");
+            // System.out.println("But that's impossible since the deck is empty.");
+        Console.print(" \n But that's impossible since the deck is empty.");
     }
 
     public int getNumBooks() {
@@ -137,39 +154,49 @@ class HumanPlayer extends Player {
         do{
             Card book = checkForBooks();
             if(book != null)
-                System.out.println("You got a book of " + book + "s!");
+              //  System.out.println("You got a book of " + book + "s!");
+                Console.print(" \n You got a book of " + book + "s!");
 
             if (hand.size() == 0) {
-                System.out.print("Your hand is empty, you must "); //"Go fish!"
+              //  System.out.print("Your hand is empty, you must "); //"Go fish!"
+                Console.print(" \n Your hand is empty, you must ");
                 break;
             }
             else {
-                System.out.print("Your hand:");
+              //  System.out.print("Your hand:");
+                Console.print(" \n Your hand: ");
                 for(Card c: hand)
-                    System.out.print(c + " ");
-                System.out.println();
+                  //  System.out.print(c + " ");
+              //  System.out.println();
+                    Console.print(c + " ");
+                Console.print("");
             }
 
-            System.out.println("Ask opponent for what card?");
+          //  System.out.println("Ask opponent for what card?");
+            Console.print(" \n Ask opponent for what card?");
 
             Card req;
             try{
                 req = Card.valueOf(scn.next().toUpperCase());
             }
             catch(IllegalArgumentException e){ //If what you said is not in Card
-                System.out.println("Card not present in this deck. Try again:");
+               // System.out.println("Card not present in this deck. Try again:");
+                Console.print(" \n Card not present in this deck. Try again: ");
                 continue;
             }
 
             if(!hand.contains(req)) {
-                System.out.println("You may not ask for a card you have none of. Try again:");
+             //   System.out.println("You may not ask for a card you have none of. Try again:");
+                Console.print(" \n You may not ask for a card you have none of. Try again: ");
                 continue;
             }
 
-            System.out.println("You ask for a " + req);
+          //  System.out.println("You ask for a " + req);
+            Console.print(" \n You ask for a " + req);
             playing = askFor(req); //If you get card(s), askFor returns true and loops
         } while(playing);
-        System.out.println("Go fish!");
+       // System.out.println("Go fish!");
+        Console.print(" \n GO FISH !!!!");
         fish();
     }
 }
@@ -183,17 +210,21 @@ class AIPlayer extends Player{
         do{
             Card book = checkForBooks();
             if(book != null)
-                System.out.println("Your opponent got a book of " + book + "s...");
+               // System.out.println("Your opponent got a book of " + book + "s...");
+                Console.print("\n Your opponent got a book of " + book + "s...");
             if (hand.size() == 0){
-                System.out.print("Your opponent's hand is empty.");
+               // System.out.print("Your opponent's hand is empty.");
+                Console.print(" \n Your opponent's hand is empty.");
                 break;
             }
             Card req = aiMagic();
-            System.out.println("Your opponent asks for cards by the name of " + req);
+           // System.out.println("Your opponent asks for cards by the name of " + req);
+            Console.print("\n Your opponent asks for " + req);
             playing = askFor(req);
             age++;
         } while(playing);
-        System.out.println("Your opponent goes fishing.");
+       // System.out.println("Your opponent goes fishing.");
+        Console.print("\n Your opponent goes fishing!!!");
         fish();
     }
 
@@ -202,7 +233,7 @@ class AIPlayer extends Player{
     private Card aiMagic() {
         if (age>2) {
             queries.remove(queries.size()-1); //gets rid of oldest entry so it won't
-            age=0;                           //get stuck asking for the same thing
+            age=0;                                  //get stuck asking for the same thing
         }
         for(int i=queries.size()-1; i>-1; i--) //(maybe a queue would have been better?)
             if (hand.contains(queries.get(i))) {
