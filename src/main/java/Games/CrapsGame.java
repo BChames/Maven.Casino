@@ -2,21 +2,15 @@ package Games;
 
 import GameComponents.Dice;
 import io.zipcoder.casino.MainApplication.Console;
-import Interfaces.GamblingGame;
 import io.zipcoder.casino.MainApplication.MainMenu;
-
 import player.Player;
-
-//import player.CrapsPlayer;
-// import player.Player;
-//>>>>>>> Craps
-
 import java.util.Scanner;
 
-public class CrapsGame implements GamblingGame {
+public class CrapsGame{
     Dice dice = new Dice(2);
     Double wager =0.0;
     Player crapsPlayer;
+    int roll = dice.tossAndSum();
     MainMenu userInput = new MainMenu();
 
     public CrapsGame (Player casinoPlayer){this.crapsPlayer = casinoPlayer;}
@@ -28,37 +22,54 @@ public class CrapsGame implements GamblingGame {
     public void addBet(){
         Scanner scan = new Scanner(System.in);
         wager = Console.getDoubleInput("Welcome to Craps! How much would you like to wager? " + crapsPlayer.getWallet());
+        if (crapsPlayer.getWallet() == 0) {
+            Console.println("Sorry you dont have enough money to play this game");
+            userInput.getMainInputMenu();}
+        else if (wager > crapsPlayer.getWallet()){
+            Console.println("Sorry that's more than you have available...you're current balance is $"+crapsPlayer.getWallet());
+            startCraps();
+        } else
         crapsPlayer.setWallet(crapsPlayer.getWallet()-wager);
         Console.print("You have chosen to wager $" + wager + ". Good luck!");
     }
-
-    @Override
-    public Double addToBet() {
-        return null;
-    }
-
-    @Override
-    public Double payOut() {
-        return  null;
-    }
     public void isWinner(){
         crapsPlayer.setWallet(crapsPlayer.getWallet()+wager*2);
-        Console.print("Congratulations! You matched your point. You won $" + wager*2 + "\nYour current total is " + crapsPlayer.getWallet());
+        Console.println("Congratulations! You rolled a " +roll+" and matched your point. You won $" + wager*2 + "\nYour current total is " + crapsPlayer.getWallet());
+        continueMenu(crapsPlayer);
+    }
+    public void isAutoWinner(){
+        crapsPlayer.setWallet(crapsPlayer.getWallet()+wager*2);
+        Console.println("Congratulations! You rolled a " +roll+" and won $" + wager + "\nYour current total is " + crapsPlayer.getWallet());
         continueMenu(crapsPlayer);
     }
     public void isLoser(){
-        Console.print("Sorry, you rolled a 7. You lost $" + wager + "\nYour current total is " + crapsPlayer.getWallet());
+        Console.println("Sorry... you rolled a 7. You lost $" + wager + "\nYour current total is " + crapsPlayer.getWallet());
         continueMenu(crapsPlayer);
+    }
+    public void isAutoLoser(){
+        Console.println("Sorry, you rolled a "+roll+". You lost $"+wager+ "\nYour current total is \" + crapsPlayer.getWallet()");
+        continueMenu(crapsPlayer);
+    }
+    public Boolean autoWin(){
+        if (roll == 7 || roll == 11){
+        return true;
+        }
+        return false;
+    }
+    public Boolean autoLose(){
+        if (roll == 2 || roll == 3 || roll ==12){
+            return true;
+        }
+        return false;
     }
 
     public void firstRoll() {
         Console.getStringInput("\nPress enter to roll the dice");
-        int roll = dice.tossAndSum();
-        //Console.print(""+roll);
-        if (roll == 7 || roll == 11) {
-            isWinner();
-        } else if (roll == 2 || roll == 3 || roll == 12) {
-            isLoser();
+        roll = dice.tossAndSum();
+        if (autoWin()) {
+            isAutoWinner();
+        } else if (autoLose()){
+            isAutoLoser();
         } else {
             int point = roll;
             Boolean keepPlaying = true;
@@ -88,7 +99,6 @@ public class CrapsGame implements GamblingGame {
                 startCraps();
                 break;
             case  2:
-
                 break;
         }
     }

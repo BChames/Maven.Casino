@@ -155,13 +155,13 @@ import java.util.Collections;
                 transitionMenu(baPlayer);}
             resetGame();
             transitionMenu(baPlayer);
-
         }
 
         public void resetGame() {
             playerPoints = 0;
             computerPoints =0;
             diceHand.clear();
+
         }
 
         public void backComputerRoll() {
