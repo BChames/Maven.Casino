@@ -22,7 +22,7 @@ import java.util.Collections;
         }
 
         public void startBackAlley() {
-            playerBet = Console.getDoubleInput("Welcome to BackAlley Dice!\n You currently have: " + baPlayer.getWallet() + "\nPlease place your bet : ");
+            playerBet = Console.getDoubleInput("\n\nWelcome to BackAlley Dice!\n You currently have: " + baPlayer.getWallet() + "\nPlease place your bet : ");
             if (playerBet > baPlayer.getWallet()) {
                 Console.println("HAHA... no you don't have that much try again :)\n\n");
                 startBackAlley();
@@ -201,7 +201,13 @@ import java.util.Collections;
                         "\nPress enter to see who won... ");
                 if (computerPoints > playerPoints) {
                     isLoser();
-                } else isWinner();;
+                }
+                else if (computerPoints == playerPoints){
+                    Console.println("Oops its a tie! Try again");
+                    resetGame();
+                    backPlayerRoll();
+                }
+                 else isWinner();;
 
             } else if (!checkForAutoWin() && !checkForAutoLose() && !checkDoublesLose() && !checkDoublesWin() && checkDoublesPoints() == 0) {
                 System.out.println("Computer has a Dead Roll! Rerolling...");
@@ -215,8 +221,7 @@ import java.util.Collections;
 
            Integer choice = Console.getIntegerInput("\n\nWhat do you wanna do now?\nPress 1 : Continue Playing" +
                 "\nPress 2 : Go back to Main Menu");
-            if(baPlayer.getWallet() <=0){
-                choice =2;}
+
             switch (choice) {
                 case 1:
                     startBackAlley();
