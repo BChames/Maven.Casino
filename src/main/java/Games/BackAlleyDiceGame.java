@@ -151,6 +151,7 @@ import java.util.Collections;
             Console.println("You lose.. awkward..." + "\nYour bet of $" + playerBet + " is ours now....." +
                     "\nYour wallet now has: $" + baPlayer.getWallet());
             transitionMenu(baPlayer);
+
         }
 
         public void backComputerRoll() {
