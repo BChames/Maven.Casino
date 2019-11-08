@@ -43,9 +43,9 @@ public class BlackJackGame {
 
     public void startBlackJack(){
 
-        playerBet = Console.getDoubleInput("Welcome to Trap House nBlackJack!\n You currently have BROKE BOI!!: " + bjPlayer.getWallet() + "\nPlease place your bet : ");
+        playerBet = Console.getDoubleInput("Welcome to BlackJack!\n You currently have: " + bjPlayer.getWallet() + "\nPlease place your bet : ");
         if (playerBet > bjPlayer.getWallet()) {
-            Console.println("HAHA... run your pockets :)\n\n");
+            Console.println("HAHA... no you don't have that much try again :)\n\n");
             startBlackJack();
         }
         bjPlayer.setWallet(bjPlayer.getWallet() - playerBet);

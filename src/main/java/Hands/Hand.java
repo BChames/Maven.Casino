@@ -84,9 +84,6 @@ public class Hand {
         return new ArrayList<Card>(this.cardsInHand);
     }
 
-    public static void main(String[] args) {
-        // write your code here
-    }
     public void showPlayerCardValues() {
         System.out.println("^Your cards are");
         System.out.println(cardsInHand);
