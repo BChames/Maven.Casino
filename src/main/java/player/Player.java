@@ -1,6 +1,8 @@
 package player;
 
 import GameComponents.Card;
+import io.zipcoder.casino.MainApplication.Console;
+import io.zipcoder.casino.MainApplication.MainMenu;
 
 public class Player {
 
@@ -14,7 +16,7 @@ public class Player {
     public Player() {
 
         this.userName = "Player 1";
-        this.wallet = 300.0;
+        this.wallet = 500.0;
     } // default constructor
 
 
@@ -33,6 +35,5 @@ public class Player {
     public void setWallet(Double wallet) {
         this.wallet = wallet;
     }
-
 
 }
